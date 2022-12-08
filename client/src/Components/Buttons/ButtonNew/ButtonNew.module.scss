@@ -1,0 +1,47 @@
+.cont{
+    display: flex;
+    position: relative;
+    justify-content: center;
+
+}
+.buttonPago{
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 35%;
+    color: var(--ColorTrhee);
+    font-family: 'Karla', sans-serif;
+    font-size: 20px;
+    font-style: initial;
+    cursor: pointer;
+}
+.offButton{
+    background-color: var(--ColorFour)
+}
+.NewButton{
+    background-color: var(--ColorSix);
+}
+.NewButton:hover{
+    background-color: var(--ColorFour);
+}
+.RightButton{
+    background-color: var(--ColorOk);
+}
+.RightButton:hover{
+    opacity: 80%;
+}
+.EditButton{
+    background-color: var(--ColorNine);
+}
+.EditButton:hover{
+    opacity: 80%;
+}
+.DeleteButton{
+    background-color: var(--ColorSeven);
+}
+.DeleteButton:hover{
+    opacity: 80%;
+}

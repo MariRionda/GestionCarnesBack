@@ -1,0 +1,78 @@
+.cont{
+    display: flex;
+    position: relative;
+    justify-content: center;
+    text-align: center;
+}
+.button1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    height: 45px;
+    border-radius: 10px;
+    border-color: var(--ColorTrhee);
+    margin: 0;
+    padding: 0;
+    color: var(--ColorTrhee);
+    font-family: 'Karla', sans-serif;
+    font-size: 15px;
+    font-style: initial;
+}
+.GreyButton{
+    background-color: var(--ColorFour);
+}
+.PrimaryButton{
+    background-color: var(--ColorTwo);
+}
+.PrimaryButton:hover{
+    background-color: var(--ColorFour);
+    cursor: pointer;
+}
+.SecondaryButton{
+    background-color: var(--ColorFive);
+}
+.SecondaryButton:hover{
+    opacity: 80%;
+    cursor: pointer;
+}
+.GreenButton{
+    background-color: var(--ColorOk);
+}
+.GreenButton:hover{
+    opacity: 80%;
+    cursor: pointer;
+}
+.RedButton{
+    background-color: var(--ColorOne);
+}
+.RedButton:hover{
+    background-color: var(--ColorOne);
+    cursor: pointer;
+}
+
+@media (max-width: 600px) {
+    .cont{
+        display: flex;
+        position: relative;
+        justify-content: center;
+        text-align: center;
+        
+    }
+    .button1{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100px;
+        height: 45px;
+        border-radius: 10px;
+        border-color: var(--ColorTrhee);
+        margin: 0;
+        padding: 0;
+        color: var(--ColorTrhee);
+        font-family: 'Karla', sans-serif;
+        font-size: 12px;
+        font-style: initial;
+    }
+    
+}

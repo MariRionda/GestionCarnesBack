@@ -1,0 +1,327 @@
+.conteinerAll{
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    flex-direction: column;
+    background-image: linear-gradient(180deg,rgb(100, 9, 9) 0, rgb(90, 9, 9) 10%, rgb(80, 9, 9) 20%, rgb(70, 9, 9) 30%, rgb(60, 9, 9) 40%, rgb(50, 9, 9) 50%, rgb(40, 9, 9) 60%, rgb(30, 9, 9) 70%, rgb(20, 9, 9) 80%, rgb(10, 9, 9) 90%, rgb(0, 9, 9) 100%);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    padding-bottom: 30px;
+}
+#asd{
+    justify-content: center;
+    min-height: 0;
+    align-items:unset;
+}
+
+.contTitle{
+    margin-top: 20px;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+}
+.titleP{
+    font-family: 'Karla', sans-serif;
+    font-weight: bold;
+    font-style: initial;
+    font-size: 18px;
+    color: var(--ColorFontTwo);
+}
+.title{
+    display: flex;
+    position: relative;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    color: var(--ColorFontTwo);
+    font-family: 'Karla', sans-serif;
+    font-size: 16px;
+    font-style: initial;
+}
+.titles{
+    display: flex;
+    position: relative;
+    justify-content: center;
+    color: var(--ColorFontTwo);
+    font-family: 'Karla', sans-serif;
+    font-size: 16px;
+    font-style: initial;
+}
+.titlesPer{
+    display: flex;
+    position: relative;
+    justify-content: center;
+    color: var(--ColorFontTwo);
+    font-family: 'Karla', sans-serif;
+    font-size: 16px;
+    font-style: initial;
+}
+
+.titleCards{
+    display: flex;
+    position: relative;
+    gap: 50px;
+    justify-content: center;
+    align-items: center;
+    color: var(--ColorFontTwo);
+    font-family: 'Karla', sans-serif;
+    font-size: 16px;
+    font-style: initial;
+    margin-top: 20px;
+}
+.cheklist{
+    display: flex;
+}
+
+.title1{
+    width: 150px;
+}
+.title2{
+    width: 120px;
+}
+.title3{
+    width: 50px;
+}
+.titlePer1{
+    width: 70px;
+}
+.titlePer2{
+    width: 110px;
+}
+.titlePer3{
+    width: 110px;
+}
+.titlePer4{
+    width: 110px;
+}
+.titlePer5{
+    width: 100px;
+    text-align: right;
+}
+
+.cardsCont{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+@media screen and (max-width: 1000px) {
+    #asd{
+        justify-content: center;
+        min-height: 100%;
+        
+    }
+}
+@media screen and (max-width: 500px) {
+    .title{
+        gap: 15px;
+        font-size: 12px;
+        
+    }
+    .cardsCont{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    .titleCards{
+        display: flex;
+        position: relative;
+        gap: 20px;
+        justify-content: center;
+        align-items: center;
+        color: var(--ColorFontTwo);
+        font-family: 'Karla', sans-serif;
+        font-size: 14px;
+        font-style: initial;
+        margin-top: 20px;
+    }
+    .titlePer1{
+        width: 30px;
+    }
+    .titlePer2{
+        width: 40px;
+    }
+    .titlePer3{
+        width: 80px;
+    }
+    .titlePer4{
+        width: 100px;
+    }
+    .titlePer5{
+        width: 80px;
+        text-align: right;
+    }
+    .titlesPer{
+        font-size: 12px;;
+    }
+}
+.Conteiner{
+    width: 100%;
+    height: 100%;
+    min-height: 800px;
+    align-items: center;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+}
+
+.tablecliente{
+    margin-top: 20px;
+    max-width: 500px;
+    width: 350px;
+}
+.buttonEdit{
+    display: flex;
+    position: relative;
+    margin-bottom: -30px;
+    margin-left: 250px;
+}
+.buttonDelete{
+    display: flex;
+    position: relative;
+    margin-left: 320px;
+    margin-bottom: -24px;
+}
+.page{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+.cont{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.marca{
+    background-color:var(--ColorTrhee);
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+}
+.firstTitle{
+    color: var(--ColorFontTwo);
+    font-family: 'Karla', sans-serif;
+    font-weight: bold;
+    font-style: initial;
+    font-size: 22px;
+}
+.conteiner{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+}
+
+.tablefaena{
+    margin-top: 2%;
+    width: 600px;
+}
+.text{
+    color: var(--ColorFour);
+}
+.tdDF{
+    text-align:center
+}
+
+.tdr{
+    text-align:right
+}
+.columnRight{
+    text-align: center;
+}
+@media screen and (max-width: 500px) {
+    .tablefaena{
+scale: 0.68;
+    }
+    .title1{
+        width: 130px;
+        }
+        .title2{
+            width: 100px;
+        }
+        .title3{
+            width: 50px;
+        }
+}
+
+.formContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 20px;
+}
+.formItem{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 300px;
+    height: 50px;
+    background-color: var(--ColorEight);
+    border-radius: 20px;
+    margin: 0;
+    padding: 18px;
+    color: var(--ColorFontOne);
+    font-family: 'Karla', sans-serif;
+    font-size: 15px;
+    font-style: initial;
+    
+}
+
+.titleForm{
+    font-size: 16px;
+}
+
+p.danger {
+	color: var(--ColorFontTrhee);
+	text-align: center;
+	margin: 0;
+    font-size: 12px;
+}
+p.pass{
+    display: none;
+}
+.buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+.size1 {
+	width: 50px;
+}
+.size2{
+    width: 100px;
+}
+.numero{
+    display: flex;
+}
+input{
+    border-radius: 10px;
+    border-color: var(--ColorBorderOne);
+}
+select{
+    border-radius: 10px;
+    border-color: var(--ColorBorderOne);
+    height: 30px;
+}
+.PDFcards{
+    display: flex;
+    
+}

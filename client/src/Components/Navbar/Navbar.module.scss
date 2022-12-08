@@ -1,0 +1,107 @@
+.NavConteiner{
+    display: flex;
+    position: relative;
+    height: auto;
+    padding: 5px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 10%;
+}
+.DivTitle{
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 15px;
+    width: 60%;
+    color: var(--ColorFontTwo);
+}
+.NavTitle{
+    display:flex;
+    position: relative;
+    font-size: 20px;
+    font-family: 'Karla', sans-serif;
+    font-style:initial;
+    font-weight: bold;
+    height: 100%;
+}
+
+.ConteinerButtonReturn{
+    background-color: var(--ColorTwo);
+    background-image: url("../../Media/return.svg");
+    background-repeat: no-repeat;
+    background-size: 70%;
+    background-position-x: 50%;
+    background-position-y: 50%;
+    width: 16%;
+    height: 16%;
+    max-width: 60px;
+    min-width: 50px;
+    max-height: 60px;
+    min-height: 50px;
+    border-radius: 30%;
+    cursor: pointer;
+
+}
+.ConteinerButtonReturn:hover{
+    background-color: var(--ColorFour);
+}
+
+.ConteinerButtonHome{
+    background-color: var(--ColorTwo);
+    background-image: url("../../Media/home.svg");
+    background-repeat: no-repeat;
+    background-size: 80%;
+    background-position-x: 50%;
+    background-position-y: 50%;
+    width: 16%;
+    height: 16%;
+    max-width: 60px;
+    min-width: 50px;
+    max-height: 60px;
+    min-height: 50px;
+    border-radius: 30%;
+    margin-right: 10%;
+    cursor: pointer;
+
+}
+.ConteinerButtonHome:hover{
+    background-color: var(--ColorFour);
+}
+.loguito{
+    display: none;
+}
+@media screen and (min-width: 500px) {
+    .ConteinerButtonHome {
+    margin-right: 3%;
+    margin-left: 0%;
+    }
+    .DivTitle{
+       width: 90%;
+       margin-left: 5%;
+    }
+    .ConteinerButtonReturn{
+        margin-left: 0%;
+        margin-right: 0%;
+    }
+    .NavConteiner{
+        gap: 3%;
+    }
+    .NavTitle{
+        font-size: 25px;
+    }
+  }
+  @media screen and (min-width: 700px){
+    .loguito{
+        display: flex;
+        position: relative;
+        background-image: url("https://res.cloudinary.com/dk2al2urj/image/upload/v1666031351/MyPortfolio/logo_Don_Alberto_g1wuop.png");
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 70px;
+        height: 70px;
+    }
+
+  }

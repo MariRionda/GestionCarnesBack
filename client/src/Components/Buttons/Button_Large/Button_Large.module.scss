@@ -1,0 +1,24 @@
+.cont{
+    display: flex;
+    position: relative;
+    border-color: var(--ColorTrhee);
+    justify-content: center;
+    text-decoration-color: var(--ColorTwo) ;
+}
+.button1{
+    width: 300px;
+    height: 45px;
+    background-color: var(--ColorTwo);
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: var(--ColorTrhee);
+    margin: 0;
+    padding: 0;
+    color: var(--ColorTrhee);
+    font-family: 'Karla', sans-serif;
+    font-size: 20px;
+    font-style: initial;
+}
+.button1:hover{
+    background-color: var(--ColorFour);
+}
