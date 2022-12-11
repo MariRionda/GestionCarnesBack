@@ -79,6 +79,22 @@ const rootReducer = (state = initialState, action) => {
             ...state,
             pagosPDF: action.payload,
             }
+        case "FILTRAR_CLIENTES":
+            return {
+                ...state,
+                AllClientes: action.payload,
+            }
+        case "FILTRAR_VENTAS":
+            return {
+                ...state,
+                AllVentas: action.payload,
+            }
+        case "FILTRAR_VENTAS_ACHURAS":
+            return {
+                ...state,
+                AllVentasAchuras: action.payload,
+            }
+            
         case "SALDO_VENTA_TOTAL":
             return {
             ...state,

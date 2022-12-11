@@ -111,7 +111,7 @@ const Form_Faena = () => {
     useEffect(() => {
         if(alert_msj!==""){
             swal({
-                titleForm: alert_msj,
+                text: alert_msj,
                 icon: alert_msj==="Faena creada con éxito"?"success":"warning", 
                 button: "ok",
             })

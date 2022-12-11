@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router";
 import swal from "sweetalert";
 import ShortButton from "../../Components/Buttons/Button_Short/Button_Short";
 import NavBar from '../../Components/Navbar/Navbar'
-import {getAllPagosCompras, getComrpaByID, getPagosComprasByProveedor, getProveedorByName, postNewPagoCompra, putSaldoCompra, setAlert, setimgurl } from "../../Redux/Actions/Actions";
+import {getComrpaByID, getPagosComprasByProveedor, getProveedorByName, postNewPagoCompra, putSaldoCompra, setAlert, setimgurl } from "../../Redux/Actions/Actions";
 import stylePagoC from './Form_pago.module.scss';
 //calendario-----------------------------------
 import {  KeyboardDatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
@@ -39,18 +39,12 @@ const Form_Pago_Compra = () => {
 
     useEffect(() => {
         dispatch(getComrpaByID(id))
-        dispatch(getAllPagosCompras())
     }, [dispatch])
 
     const compra = useSelector((state)=>state.CompraByID);
     const alert_msj= useSelector ((state)=>state.alert_msj);
     const urlImg= useSelector ((state)=>state.urlImg);
-    let allPagosCompras= useSelector ((state)=>state.allPagosCompras);
-
-    allPagosCompras.sort(function(a,b){
-        if(a.id*1>b.id*1){return 1}
-        if(a.id*1<b.id*1){return -1}
-        return 0})
+  
 
     useEffect(() => {
         dispatch(getProveedorByName(compra.proveedor))
@@ -72,7 +66,7 @@ const Form_Pago_Compra = () => {
     useEffect(() => {
         if(alert_msj!==""){
             swal({
-                title: alert_msj,
+                text: alert_msj,
                 icon: alert_msj==="Pago creado con éxito"?"success":"warning", 
                 button: "ok",
             })}
@@ -120,8 +114,7 @@ const Form_Pago_Compra = () => {
         !error.formaDePago && form.formaDePago &&
         !error.monto && form.monto
         ){
-        if(allPagosCompras.length==0)form.id=1
-        if(allPagosCompras.length>0)form.id= allPagosCompras.pop().id*1 + 1
+        form.id="PC"+Math.floor(Math.random()*1000000)
         form.proveedor=compra.proveedor
         form.compraID=id
         form.fecha=form.fecha.getTime()
@@ -139,7 +132,6 @@ const Form_Pago_Compra = () => {
         }
         else {
             swal({
-                title: "Alerta de Pago",
                 text: "Datos incorrectos, por favor intente nuevamente",
                 icon: "warning",
                 button: "ok",

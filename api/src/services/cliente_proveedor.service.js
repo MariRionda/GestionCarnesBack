@@ -16,7 +16,7 @@ const getCliente = async (id) => {
 
 const crearCliente = async (data) => {
     try {
-        await db.collection("Clientes").doc(data.id.toString()).set(data)
+        await db.collection("Clientes").doc(data.id).set(data)
         return true;
     }
     catch (e) {
@@ -60,7 +60,7 @@ const getProveedor = async (id) => {
 
 const crearProveedor = async (data) => {
     try {
-        await db.collection("Proveedores").doc(data.id.toString()).set(data)
+        await db.collection("Proveedores").doc(data.id).set(data)
         return true;
     } catch (e) {
         console.log(e);

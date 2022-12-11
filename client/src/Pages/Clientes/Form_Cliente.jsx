@@ -27,17 +27,6 @@ const Form_Cliente = () => {
     const dispatch = useDispatch();
     const {id}=useParams()
 
-    useEffect(() => {
-        dispatch(getAllClientes())
-    }, [dispatch]);
-
-    const AllClientes = useSelector((state)=>(state.AllClientes))
-
-    AllClientes.sort(function(a,b){
-        if(a.id>b.id){return 1}
-        if(a.id<b.id){return -1}
-        return 0})
-
     const [form, setForm] = useState(formCl);
     const [error, setError] = useState({});
 
@@ -59,18 +48,16 @@ const Form_Cliente = () => {
         e.preventDefault();
         if(!error.nombre && form.nombre){
             if(id==null || id==0){
-                if(AllClientes.length==0)form.id=1
-                if(AllClientes.length>0)form.id = AllClientes.pop().id*1 + 1
+                form.id="Cl"+Math.floor(Math.random()*1000000)
                 dispatch(postNewCliente(form))
                 dispatch(getAllClientes())
             }
             else{
-                form.id=id.toString()
+                form.id=id
                 dispatch(putEditarCliente(form))
             }            
             swal({
-                title: "Nuevo Cliente",
-                text: "Cargado correctamente",
+                text: "Cliente cargado correctamente",
                 icon: "success",
                 button: "ok",
             })
@@ -78,7 +65,6 @@ const Form_Cliente = () => {
         }
         else {
             swal({
-                title: "Alerta",
                 text: "Datos incorrectos, por favor intente nuevamente",
                 icon: "warning",
                 button: "ok",

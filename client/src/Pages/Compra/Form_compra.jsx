@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import swal from "sweetalert";
 import ShortButton from "../../Components/Buttons/Button_Short/Button_Short";
-import {getAllComrpas, getAllFaenas, getAllGruposReses, getAllProveedores, getFaenasByTropa, getGruposByTropa, postNewCompra, putEstadoCompraFaena, putGrupoResesCostoKg, putStockReses, setAlert} from "../../Redux/Actions/Actions";
+import {getAllFaenas, getAllProveedores, getFaenasByTropa, getGruposByTropa, postNewCompra, putEstadoCompraFaena, putStockReses, setAlert} from "../../Redux/Actions/Actions";
 import NavBar from '../../Components/Navbar/Navbar'
 import style from "./Compras.module.scss";
 import ButtonNew from "../../Components/Buttons/ButtonNew/ButtonNew";
@@ -93,7 +93,6 @@ const Form_Compra = () => {
     useEffect(() => {
         dispatch(getAllProveedores())
         dispatch(getAllFaenas())
-        dispatch(getAllComrpas())
     }, [dispatch])
 
     //Estados globales
@@ -101,19 +100,12 @@ const Form_Compra = () => {
     let proveedores = useSelector((state)=>state.AllProveedores);
     let AllFaenas = useSelector((state)=>state.AllFaenas)
     let faenasDisp = AllFaenas.filter(a=>a.estadoCompra!==true)
-    let compras = useSelector((state)=>state.AllCompras)
-
-    compras.sort(function(a,b){
-        if(a.id>b.id){return 1}
-        if(a.id<b.id){return -1}
-        return 0})
-
 
 
     useEffect(() => {
         if(alert_msj!==""){
             swal({
-                titleForm: alert_msj,
+                text: alert_msj,
                 icon: alert_msj==="Compra creada con éxito"?"success":"warning", 
                 button: "ok",
             })}
@@ -228,8 +220,7 @@ const Form_Compra = () => {
             // -!error.costo_veps_unit && form.costo_veps_unit
         ){
             //cargo el resto de las propiedades
-            if(compras.length==0)form.id = 1
-            if(compras.length>0)form.id = compras.pop().id*1 + 1
+            form.id="C"+form.grupos[0].n_tropa
             let arr =[]
             let arrayGrupos = []
             form.grupos.map(a=>{

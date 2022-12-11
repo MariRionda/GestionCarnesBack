@@ -36,17 +36,10 @@ const Form_Pago_Venta_Achuras = () => {
 
     useEffect(() => {
         dispatch(getVentaAchurasByID(id))
-        dispatch(getAllPagosVentasAchuras())
     }, [dispatch])
 
     const venta = useSelector((state)=>state.VentaAchuraByID);
     const alert_msj= useSelector ((state)=>state.alert_msj);
-    let allPagosVentasAchuras= useSelector ((state)=>state.allPagosVentasAchuras);
-
-    allPagosVentasAchuras.sort(function(a,b){
-        if(a.id*1>b.id*1){return 1}
-        if(a.id*1<b.id*1){return -1}
-        return 0})
 
     useEffect(() => {
         dispatch(getClienteByName(venta.clien))
@@ -56,7 +49,7 @@ const Form_Pago_Venta_Achuras = () => {
     useEffect(() => {
         if(alert_msj!==""){
             swal({
-                title: alert_msj,
+                text: alert_msj,
                 icon: alert_msj==="Pago creado con éxito"?"success":"warning", 
                 button: "ok",
             })}
@@ -103,8 +96,7 @@ const Form_Pago_Venta_Achuras = () => {
         if(
         !error.monto && form.monto
         ){
-            if(allPagosVentasAchuras.length==0)form.id=1
-            if(allPagosVentasAchuras.length>0)form.id= allPagosVentasAchuras.pop().id*1 + 1
+            form.id="PVA"+Math.floor(Math.random()*1000000)
             form.clien=venta.clien
             form.ventaID=id
             form.fecha=form.fecha.getTime()
@@ -119,7 +111,6 @@ const Form_Pago_Venta_Achuras = () => {
         }
         else {
             swal({
-                title: "Alerta de Pago",
                 text: "Datos incorrectos, por favor intente nuevamente",
                 icon: "warning",
                 button: "ok",

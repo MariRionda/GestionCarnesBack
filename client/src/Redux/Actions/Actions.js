@@ -1,5 +1,5 @@
 import axios from "axios";
-
+//getSaldoAllVentas
 // estado de login
 export const login_state = () => {
     const e = localStorage.getItem("login")
@@ -10,6 +10,18 @@ export const pagosPDF = (pagos, saldoPagos, cliente) =>{
   let response= pagos.filter((a)=>a.check==true)
   return ({ type: "PAGOS_PDF", payload: [response,saldoPagos,cliente]  });
 }
+export const filtrarClientes = (filtro,AllClientes) => {
+  let filtrados = AllClientes.filter(a=>a.nombre.toLowerCase().includes(filtro))
+  return ({ type: "FILTRAR_CLIENTES", payload: filtrados  });
+};
+export const filtrarVentas = (filtro,AllVentas) => {
+  let filtrados = AllVentas.filter(a=>a.cliente.toLowerCase().includes(filtro))
+  return ({ type: "FILTRAR_VENTAS", payload: filtrados  });
+};
+export const filtrarVentasAchuras = (filtro,AllVentasAchuras) => {
+  let filtrados = AllVentasAchuras.filter(a=>a.clien.toLowerCase().includes(filtro))
+  return ({ type: "FILTRAR_VENTAS_ACHURAS", payload: filtrados  });
+};
 
 //getPagosComprasByProveedor
 export const URLimag = (url) => {
@@ -410,9 +422,9 @@ export const getSaldoAllVentas = () => {
             }
           });
           let saldo=0
-          json.data.data.map((a)=>saldo+=a.saldo)
+          json.data.data.map((a)=>saldo+=a.saldo*1)
           let saldo2=0
-          json2.data.data.map((a)=>saldo2+=a.saldo)
+          json2.data.data.map((a)=>saldo2+=a.saldo*1)
           let saldoTotal = saldo + saldo2
           return dispatch({
           type: "GET_SALDO_ALL_VENTAS",

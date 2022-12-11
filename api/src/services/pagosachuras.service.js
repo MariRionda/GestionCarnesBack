@@ -24,7 +24,7 @@ const getAllPagosVentaAchurasByID_V = async (ventaID) => {
 //-->crear un nuevo pago de una venta
 const crearPagoVentaAchuras = async (data) => {
     try {
-        await db.collection("PagosVentasAchuras").doc(data.id.toString()).set(data)
+        await db.collection("PagosVentasAchuras").doc(data.id).set(data)
         return true;
     } catch (e) {
         console.log(e);

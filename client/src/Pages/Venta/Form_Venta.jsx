@@ -7,7 +7,7 @@ import ShortButton from "../../Components/Buttons/Button_Short/Button_Short";
 import ButtonNew from "../../Components/Buttons/ButtonNew/ButtonNew";
 import NavBar from '../../Components/Navbar/Navbar'
 import style from "./Ventas.module.scss";
-import { getAllClientes, getAllFaenas, getAllVentas, getClienteByName, postNewVentaCarne, putCuartoRes, putGrupoDetalle, putStockRes, putStockReses, setAlert } from "../../Redux/Actions/Actions";
+import { getAllClientes, getAllFaenas, getAllVentas, getClienteByName, postNewVentaCarne, putStockReses, setAlert } from "../../Redux/Actions/Actions";
 //calendario-----------------------------------
 import {  KeyboardDatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import esLocale from 'date-fns/locale/es';
@@ -89,13 +89,7 @@ const Form_Venta = () => {
     const alert_msj= useSelector ((state)=>state.alert_msj);
     const clientes = useSelector((state)=>state.AllClientes);
     const AllFaenas = useSelector((state)=>state.AllFaenas)
-    const AllVentas= useSelector((state)=>(state.AllVentas))
 
-    AllVentas.sort(function(a,b){
-        if(a.fecha>b.fecha){return 1}
-        if(a.fecha<b.fecha){return -1}
-        return 0})
-    
     let resesStockTrue = AllFaenas.reduce((allReses, a) => {
                                                     return [...allReses, ...a.detalle.filter((s)=>s.stock==true)]
                                                     }, [])
@@ -114,12 +108,11 @@ const Form_Venta = () => {
         
         if(alert_msj!==""){
             swal({
-                titleForm: alert_msj,
+                title: alert_msj,
                 icon: alert_msj==="Venta creada con éxito"?"success":"warning", 
                 button: "ok",
             })}
             dispatch(setAlert())
-            dispatch(getAllVentas())
             form.detalle=[]
     }, [alert_msj])
 
@@ -165,12 +158,12 @@ const Form_Venta = () => {
             if(formCV.total_media=="total" || formCV.CuartoT!==0 || formCV.CuartoD!==0 ) arrResesTotales.push(formCV.correlativo)
             document.getElementById("categoria").selectedIndex = 0
             document.getElementById("res").selectedIndex = 0
+
             setFormCV(formComV);
         }
         else {
             swal({
-                titleForm: "Alerta",
-                text: "Datos incorrectos, por favor intente nuevamente",
+                title: "Datos incorrectos, por favor intente nuevamente",
                 icon: "warning",
                 button: "ok",
             })
@@ -187,11 +180,7 @@ const Form_Venta = () => {
             !error.detalle && form.detalle
         ){
             form.fecha=form.fecha.getTime()
-            if(AllVentas.length==0)form.id=1
-            if(AllVentas.length>0){
-                form.id= AllVentas.pop().id*1 + 1
-            }
-            form.id = form.id.toString()
+            form.id="V"+form.detalle[0].correlativo + Math.floor(Math.random()*10000)
             if(form.detalle.length>0){
                 form.detalle.map(a=> {
                     form.total+=a.kg*1*a.precio_kg
@@ -239,6 +228,7 @@ const Form_Venta = () => {
             dispatch(postNewVentaCarne(form))
             document.getElementById("categoria").selectedIndex = 0
             document.getElementById("res").selectedIndex = 0
+            document.getElementById("Cliente").selectedIndex = 0
             setForm(formV);
         }
         else{
@@ -321,7 +311,7 @@ const Form_Venta = () => {
                 <form className={style.form}>
                     <div className={style.formItem}>
                         <h5 className={style.titleForm}>Cliente: </h5>
-                        <select className="selectform" onChange={(e)=> handleSelectCl(e)}>
+                        <select id="Cliente" className="selectform" onChange={(e)=> handleSelectCl(e)}>
                             <option defaultValue>-</option>
                             {clientes.length > 0 &&  
                             clientes.map((c,i) => (

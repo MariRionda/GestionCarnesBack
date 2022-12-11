@@ -27,17 +27,6 @@ const Form_Proveedor = () => {
     const dispatch = useDispatch();
     const {id}=useParams()
 
-    useEffect(() => {
-        dispatch(getAllProveedores())
-    }, [dispatch]);
-
-    const AllProveedores = useSelector((state)=>(state.AllProveedores))
-
-    AllProveedores.sort(function(a,b){
-        if(a.id>b.id){return 1}
-        if(a.id<b.id){return -1}
-        return 0})
-
     const [form, setForm] = useState(formPr);
     const [error, setError] = useState({});
 
@@ -61,18 +50,16 @@ const Form_Proveedor = () => {
         !error.nombre && form.nombre 
         ){
             if(id==null || id==0){
-                if(AllProveedores.length==0)form.id=1
-                if(AllProveedores.length>0)form.id = AllProveedores.pop().id*1 + 1
+                form.id="Pr"+Math.floor(Math.random()*1000000)
                 dispatch(postNewProveedor(form))
                 dispatch(getAllProveedores())
             }
             else{
-                form.id=id.toString()
+                form.id=id
                 dispatch(putEditarProveedor(form))
             } 
             swal({
-                titleForm: "Nuevo Proveedor",
-                text: "Cargado correctamente",
+                text: "Proveedor cargado correctamente",
                 icon: "success",
                 button: "ok",
             })
@@ -80,7 +67,6 @@ const Form_Proveedor = () => {
         }
         else {
             swal({
-                titleForm: "Alerta",
                 text: "Datos incorrectos, por favor intente nuevamente",
                 icon: "warning",
                 button: "ok",

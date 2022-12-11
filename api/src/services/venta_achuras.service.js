@@ -24,7 +24,7 @@ const getAllVentasAchurasPorIDCliente = async (client_id) => {
 
 const crearVentaAchuras = async (data) => {
     try {
-        await db.collection('VentasAchuras').doc(data.id.toString()).set(data)
+        await db.collection('VentasAchuras').doc(data.id).set(data)
         return true;
     } catch (e) {
         console.log(e);

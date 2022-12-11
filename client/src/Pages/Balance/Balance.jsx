@@ -28,31 +28,29 @@ const dispatch = useDispatch()
     const saldoTotalClientes = useSelector((state)=>state.saldoAllVentas)
     const saldoTotalFaenas = useSelector((state)=>state.saldoAllFaenas)
 
-
-    console.log(VentasUltimos30Dias)
-
     let [kgStock,setKgStock] = useState(0)
     let [totalEst,setTotalEst] = useState(0)
     let [gananciaMensual,setGananciaMensual] = useState(0)
 
-
-
     AllFaenas.map((a)=>{
         a.detalle.map((r)=>{
-                    if(r.CuartoT==0 && r.CuartoD==0 ){
+            
+                    if(r.CuartoT==0 && r.CuartoD==0 && r.stock==true && r.costo_kg){
                                                         kgStock+=r.kg
                                                         totalEst+=r.costo_kg*r.kg*1.07
                                                     }
-                    if(r.CuartoT>0 ){
+                    if(r.CuartoT>0 && r.stock==true ){
                                         kgStock+=r.CuartoT
                                         totalEst+=r.costo_kg*r.CuartoT*1.07
                                     }
-                    if(r.CuartoD>0 ){
+                    if(r.CuartoD>0 && r.stock==true ){
                                         kgStock+=r.CuartoD
                                         totalEst+=r.costo_kg*r.CuartoD*1.07
                                     }
                 })
         })
+console.log(totalEst)
+    
         if(VentasUltimos30Dias.length)VentasUltimos30Dias.map(a=>{gananciaMensual+=(a.total-a.costo)})
 
     function currencyFormatter({ currency, value}) {

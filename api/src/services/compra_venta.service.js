@@ -121,7 +121,7 @@ const getComprasPorProveedor = async (proveedor) => {
 
 const crearCompra = async (data) => {
     try {
-        await db.collection("Compras").doc(data.id.toString()).set(data)
+        await db.collection("Compras").doc(data.id).set(data)
         return true;
     } catch (e) {
         console.log(e);

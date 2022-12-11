@@ -35,24 +35,16 @@ const Form_Pago_Faena = () => {
 
     useEffect(() => {
         dispatch(getFaenaById(id))
-        dispatch(getAllPagosFaenas())
     }, [dispatch])
     
     const faena = useSelector((state)=>state.FaenaById);
     const alert_msj= useSelector ((state)=>state.alert_msj);
     const urlImg= useSelector ((state)=>state.urlImg);
-    const allPagosFaenas= useSelector ((state)=>state.allPagosFaenas);
-
-    allPagosFaenas.sort(function(a,b){
-        if(a.id*1>b.id*1){return 1}
-        if(a.id*1<b.id*1){return -1}
-        return 0})
-
 
     useEffect(() => {
         if(alert_msj!==""){
             swal({
-                title: alert_msj,
+                text: alert_msj,
                 icon: alert_msj==="Pago creado con éxito"?"success":"warning", 
                 button: "ok",
             })}
@@ -102,10 +94,7 @@ const Form_Pago_Faena = () => {
             form.faenaID=id
             form.fecha=form.fecha.getTime()
             form.img_comp = urlImg
-            if(allPagosFaenas.length==0)form.id=1
-            if(allPagosFaenas.length>0){
-                form.id= allPagosFaenas.pop().id + 1
-            }
+            form.id="PF"+Math.floor(Math.random()*1000000)
             let saldo= faena.saldo - form.monto
             //poner estos dos dispach en una sola action
             dispatch(postNewPagoFaena(form))
@@ -116,7 +105,6 @@ const Form_Pago_Faena = () => {
         }
         else {
             swal({
-                title: "Alerta de Pago",
                 text: "Datos incorrectos, por favor intente nuevamente",
                 icon: "warning",
                 button: "ok",

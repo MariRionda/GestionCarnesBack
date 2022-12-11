@@ -25,7 +25,7 @@ const getAllPagosCompraByID_C = async (compraID) => {
 //-->crear un nuevo pago
 const crearPagoCompra = async (data) => {
     try {
-        await db.collection("PagosCompras").doc().set(data)
+        await db.collection("PagosCompras").doc(data.id).set(data)
         return true;
     } catch (e) {
         console.log(e);
@@ -71,7 +71,7 @@ const getAllPagosFaenasByF = async (frigorifico) => {
 //-->crear un nuevo pago
 const crearPagoFaena = async (data) => {
     try {
-        await db.collection("PagosFaenas").doc(data.id.toString()).set(data)
+        await db.collection("PagosFaenas").doc(data.id).set(data)
         return true;
     } catch (e) {
         console.log(e);
@@ -116,7 +116,7 @@ const getAllPagosVentaByID_V = async (ventaID) => {
 //-->crear un nuevo pago de una venta
 const crearPagoVenta = async (data) => {
     try {
-        await db.collection("PagosVentas").doc(data.id.toString()).set(data)
+        await db.collection("PagosVentas").doc(data.id).set(data)
         return true;
     } catch (e) {
         console.log(e);
@@ -128,7 +128,7 @@ const crearPagoVenta = async (data) => {
 //-->eliminar un pago de una venta
 const eliminarPagoVenta = async (id) => {
     try {
-        await db.collection("PagosVentas").doc(id.toString()).delete()
+        await db.collection("PagosVentas").doc(id).delete()
         return true;
     } catch (e) {
         console.log(e);

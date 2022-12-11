@@ -1,11 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllVentas, getAllVentasAchuras } from "../../Redux/Actions/Actions";
+import { filtrarVentas, getAllVentas, getAllVentasAchuras } from "../../Redux/Actions/Actions";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../../Components/Navbar/Navbar"
 import CardLarge from "../../Components/Cards/Card_Large/Card_Large"
 import style from "./Ventas.module.scss";
 import LargeButton from "../../Components/Buttons/Button_Large/Button_Large";
+import { ThemeProvider } from "@emotion/react";
+import { createTheme, TextField } from "@mui/material";
 
 
 export default function Ventas(){
@@ -20,6 +22,7 @@ export default function Ventas(){
 
     const AllVentas= useSelector((state)=>(state.AllVentas))
     const AllVentasAchuras= useSelector((state)=>(state.AllVentasAchuras))
+  
 
     AllVentas.sort(function(a,b){
         if(a.fecha>b.fecha){return -1}
@@ -38,9 +41,8 @@ export default function Ventas(){
         }) 
         return formatter.format(value)
         }
-
-    
-
+   
+ 
     return(
         <div className={style.ConteinerVenta}>
             <NavBar

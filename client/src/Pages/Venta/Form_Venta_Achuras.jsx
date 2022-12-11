@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 import swal from "sweetalert";
 import ShortButton from "../../Components/Buttons/Button_Short/Button_Short";
 import NavBar from '../../Components/Navbar/Navbar'
-import { getAllClientes, getAllVentasAchuras, getClienteByName, postNewVentaAchura, setAlert } from "../../Redux/Actions/Actions";
+import { getAllClientes, getClienteByName, postNewVentaAchura, setAlert } from "../../Redux/Actions/Actions";
 import style from "./Ventas.module.scss";
 //calendario-----------------------------------
 import {  KeyboardDatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
@@ -41,33 +41,20 @@ const Form_Venta_Achuras = () => {
 
     useEffect(() => {
         dispatch(getAllClientes())
-        dispatch(getAllVentasAchuras())
     }, [dispatch])
     
     //estados globales
     const alert_msj= useSelector ((state)=>state.alert_msj);
     const clientes = useSelector((state)=>state.AllClientes);
-    const AllVentasAchuras= useSelector((state)=>(state.AllVentasAchuras))
-
-    if(AllVentasAchuras.length>0){
-        AllVentasAchuras.sort(function(a,b){
-        if(a.id>b.id){return 1}
-        if(a.id<b.id){return -1}
-        return 0})
-    }
-
-    AllVentasAchuras.sort()
 
     useEffect(() => {
         if(alert_msj!==""){
             swal({
-                titleForm: alert_msj,
+                title: alert_msj,
                 icon: alert_msj==="Venta creada con éxito"?"success":"warning", 
                 button: "ok",
             })}
             dispatch(setAlert())
-            dispatch(getAllVentasAchuras())
-
     }, [alert_msj]) 
 
     
@@ -108,18 +95,14 @@ const Form_Venta_Achuras = () => {
             form.total=form.precioUnitario*1*form.cantidad
             form.saldo=form.total
             form.fecha=form.fecha.getTime()
-            if(AllVentasAchuras.length==0)form.id=1
-            if(AllVentasAchuras.length>0){
-                form.id= AllVentasAchuras.pop().id + 1
-            }
+            form.id="VA"+Math.floor(Math.random()*1000000)
             console.log(form)
             dispatch(postNewVentaAchura(form))
             setForm(formVA);
         }
         else{
             swal({
-                titleForm: "Alerta",
-                text: "Datos incorrectos, por favor intente nuevamente",
+                title: "Datos incorrectos, por favor intente nuevamente",
                 icon: "warning",
                 button: "ok",
             })

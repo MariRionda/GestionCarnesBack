@@ -10,7 +10,7 @@ const getAllIngresosExtras = async () => {
 //-->crear un nuevo pago de una venta
 const crearIngresoExtra = async (data) => {
     try {
-        await db.collection("IngresosExtras").doc().set(data)
+        await db.collection("IngresosExtras").doc(data.id).set(data)
         return true;
     } catch (e) {
         console.log(e);

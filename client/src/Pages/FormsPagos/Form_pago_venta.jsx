@@ -40,19 +40,10 @@ const Form_Pago_Venta = () => {
 
     useEffect(() => {
         dispatch(getVentaByID(id))
-        dispatch(getAllPagosVentas())
     }, [dispatch])
 
     const venta = useSelector((state)=>state.VentaByID);
-    const allPagosVentas = useSelector((state)=>state.allPagosVentas);
 
-    allPagosVentas.sort(function(a,b){
-        if(a.id>b.id){return 1}
-        if(a.id<b.id){return -1}
-        return 0})
-
-    
-    
     useEffect(() => {
         dispatch(getClienteByName(venta.cliente))
     }, [venta])
@@ -77,7 +68,7 @@ const Form_Pago_Venta = () => {
     useEffect(() => {
         if(alert_msj!==""){
             swal({
-                title: alert_msj,
+                text: alert_msj,
                 icon: alert_msj==="Pago creado con éxito"?"success":"warning", 
                 button: "ok",
             })}
@@ -135,8 +126,7 @@ const Form_Pago_Venta = () => {
         if(
         !error.monto && form.monto
         ){
-            if(allPagosVentas.length==0)form.id=1
-            if(allPagosVentas.length>0)form.id= allPagosVentas.pop().id*1 + 1
+            form.id="PV"+Math.floor(Math.random()*1000000)
             form.cliente=venta.cliente
             form.ventaID=id
             form.fecha=form.fecha.getTime()
@@ -153,7 +143,6 @@ const Form_Pago_Venta = () => {
         }
         else {
             swal({
-                title: "Alerta de Pago",
                 text: "Datos incorrectos, por favor intente nuevamente",
                 icon: "warning",
                 button: "ok",
