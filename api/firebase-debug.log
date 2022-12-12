@@ -1,0 +1,145 @@
+[debug] [2022-12-12T22:25:13.990Z] ----------------------------------------------------------------------
+[debug] [2022-12-12T22:25:13.992Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Andres\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve
+[debug] [2022-12-12T22:25:13.992Z] CLI Version:   11.17.0
+[debug] [2022-12-12T22:25:13.992Z] Platform:      win32
+[debug] [2022-12-12T22:25:13.992Z] Node Version:  v16.16.0
+[debug] [2022-12-12T22:25:13.994Z] Time:          Mon Dec 12 2022 19:25:13 GMT-0300 (Argentina Standard Time)
+[debug] [2022-12-12T22:25:13.994Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-12-12T22:25:14.081Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-12-12T22:25:14.082Z] > authorizing via signed-in user (donalbertokm64@gmail.com)
+[debug] [2022-12-12T22:25:14.082Z] [iam] checking project software-de-gestion-carnes for permissions ["firebase.projects.get"]
+[debug] [2022-12-12T22:25:14.083Z] > refreshing access token with scopes: []
+[debug] [2022-12-12T22:25:14.085Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2022-12-12T22:25:14.085Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2022-12-12T22:25:14.503Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2022-12-12T22:25:14.504Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2022-12-12T22:25:14.519Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/software-de-gestion-carnes:testIamPermissions [none]
+[debug] [2022-12-12T22:25:14.519Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/software-de-gestion-carnes:testIamPermissions x-goog-quota-user=projects/software-de-gestion-carnes
+[debug] [2022-12-12T22:25:14.520Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/software-de-gestion-carnes:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2022-12-12T22:25:15.501Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/software-de-gestion-carnes:testIamPermissions 200
+[debug] [2022-12-12T22:25:15.502Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/software-de-gestion-carnes:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2022-12-12T22:25:15.502Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/software-de-gestion-carnes [none]
+[debug] [2022-12-12T22:25:15.972Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/software-de-gestion-carnes 200
+[debug] [2022-12-12T22:25:15.972Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/software-de-gestion-carnes {"projectId":"software-de-gestion-carnes","projectNumber":"138678118689","displayName":"Software de Gestion Carnes","name":"projects/software-de-gestion-carnes","resources":{"hostingSite":"software-de-gestion-carnes"},"state":"ACTIVE","etag":"1_3f1c38b8-e4d4-45bd-96ae-df52469056a4"}
+[info] 
+[info] === Serving from 'C:\Users\Andres\Documents\GitHub\GestionCarnes-Firebase\api'...
+[info] 
+[info] +  functions: Using node@16 from host. {"metadata":{"emulator":{"name":"functions"},"message":"Using node@16 from host."}}
+[debug] [2022-12-12T22:25:15.995Z] defaultcredentials: writing to file C:\Users\Andres\AppData\Roaming\firebase\donalbertokm64_gmail_com_application_default_credentials.json
+[debug] [2022-12-12T22:25:15.997Z] Setting GAC to C:\Users\Andres\AppData\Roaming\firebase\donalbertokm64_gmail_com_application_default_credentials.json {"metadata":{"emulator":{"name":"functions"},"message":"Setting GAC to C:\\Users\\Andres\\AppData\\Roaming\\firebase\\donalbertokm64_gmail_com_application_default_credentials.json"}}
+[debug] [2022-12-12T22:25:15.997Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/software-de-gestion-carnes/adminSdkConfig [none]
+[debug] [2022-12-12T22:25:16.419Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/software-de-gestion-carnes/adminSdkConfig 200
+[debug] [2022-12-12T22:25:16.419Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/software-de-gestion-carnes/adminSdkConfig {"projectId":"software-de-gestion-carnes","storageBucket":"software-de-gestion-carnes.appspot.com"}
+[info] i  functions: Watching "C:\Users\Andres\Documents\GitHub\GestionCarnes-Firebase\api\functions" for Cloud Functions... {"metadata":{"emulator":{"name":"functions"},"message":"Watching \"C:\\Users\\Andres\\Documents\\GitHub\\GestionCarnes-Firebase\\api\\functions\" for Cloud Functions..."}}
+[debug] [2022-12-12T22:25:16.446Z] Validating nodejs source
+[warn] !  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[debug] [2022-12-12T22:25:19.938Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon",
+    "lint": "eslint .",
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Fedexaz/frigorifico.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Fedexaz/frigorifico/issues"
+  },
+  "homepage": "https://github.com/Fedexaz/frigorifico#readme",
+  "dependencies": {
+    "@hapi/joi": "^17.1.1",
+    "axios": "^0.25.0",
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "firebase": "^9.10.0",
+    "firebase-admin": "^11.3.0",
+    "firebase-functions": "^4.1.0",
+    "firebase-tools": "^11.17.0",
+    "ioredis": "^4.19.2",
+    "joi": "^17.6.0",
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.15",
+    "pg": "^8.8.0",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.23.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "firebase-functions-test": "^0.2.0"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "private": true
+}
+[debug] [2022-12-12T22:25:19.938Z] Building nodejs source
+[debug] [2022-12-12T22:25:19.939Z] Analyzing nodejs backend spec
+[debug] [2022-12-12T22:25:19.940Z] Could not find functions.yaml. Must use http discovery
+[debug] [2022-12-12T22:25:20.302Z] Serving at port 9005
+
+[debug] [2022-12-12T22:25:20.878Z] Got response from /__/functions.yaml {"endpoints":{"server":{"platform":"gcfv1","availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"serviceAccountEmail":null,"vpc":null,"httpsTrigger":{},"entryPoint":"server"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2022-12-12T22:25:20.885Z] shutdown requested via /__/quitquitquit
+
+[info] +  functions: Loaded functions definitions from source: server. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: server."}}
+[info] +  functions[us-central1-server]: http function initialized (http://localhost:5000/software-de-gestion-carnes/us-central1/server). {"metadata":{"emulator":{"name":"functions"},"message":"\u001b[1mhttp\u001b[22m function initialized (http://localhost:5000/software-de-gestion-carnes/us-central1/server)."}}
+[debug] [2022-12-12T22:25:54.628Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2022-12-12T22:25:54.629Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2022-12-12T22:25:54.629Z] Accepted request POST /software-de-gestion-carnes/us-central1/server/user/login --> us-central1-server
+[debug] [2022-12-12T22:25:54.632Z] [functions] Runtime ready! Sending request! {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Runtime ready! Sending request!"}}
+[debug] [2022-12-12T22:25:54.633Z] [functions] Got req.url=/software-de-gestion-carnes/us-central1/server/user/login, mapping to path=/user/login {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Got req.url=/software-de-gestion-carnes/us-central1/server/user/login, mapping to path=/user/login"}}
+[debug] [2022-12-12T22:25:54.638Z] [worker-pool] addWorker(us-central1-server) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] addWorker(us-central1-server)"}}
+[debug] [2022-12-12T22:25:54.639Z] [worker-pool] Adding worker with key us-central1-server, total=1 {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] Adding worker with key us-central1-server, total=1"}}
+[debug] [2022-12-12T22:25:55.964Z] [runtime-status] [11388] Resolved module firebase-admin {"declared":true,"installed":true,"version":"11.3.0","resolution":"C:\\Users\\Andres\\Documents\\GitHub\\GestionCarnes-Firebase\\api\\functions\\node_modules\\firebase-admin\\lib\\index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-server"},"extension":{},"message":"[runtime-status] [11388] Resolved module firebase-admin {\"declared\":true,\"installed\":true,\"version\":\"11.3.0\",\"resolution\":\"C:\\\\Users\\\\Andres\\\\Documents\\\\GitHub\\\\GestionCarnes-Firebase\\\\api\\\\functions\\\\node_modules\\\\firebase-admin\\\\lib\\\\index.js\"}"}}
+[debug] [2022-12-12T22:25:55.967Z] [runtime-status] [11388] Resolved module firebase-functions {"declared":true,"installed":true,"version":"4.1.0","resolution":"C:\\Users\\Andres\\Documents\\GitHub\\GestionCarnes-Firebase\\api\\functions\\node_modules\\firebase-functions\\lib\\v1\\index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-server"},"extension":{},"message":"[runtime-status] [11388] Resolved module firebase-functions {\"declared\":true,\"installed\":true,\"version\":\"4.1.0\",\"resolution\":\"C:\\\\Users\\\\Andres\\\\Documents\\\\GitHub\\\\GestionCarnes-Firebase\\\\api\\\\functions\\\\node_modules\\\\firebase-functions\\\\lib\\\\v1\\\\index.js\"}"}}
+[debug] [2022-12-12T22:25:55.968Z] [runtime-status] [11388] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-server"},"extension":{},"message":"[runtime-status] [11388] Outgoing network have been stubbed. [{\"name\":\"http\",\"status\":\"mocked\"},{\"name\":\"http\",\"status\":\"mocked\"},{\"name\":\"https\",\"status\":\"mocked\"},{\"name\":\"https\",\"status\":\"mocked\"},{\"name\":\"net\",\"status\":\"mocked\"}]"}}
+[debug] [2022-12-12T22:25:55.969Z] [runtime-status] [11388] Resolved module firebase-functions {"declared":true,"installed":true,"version":"4.1.0","resolution":"C:\\Users\\Andres\\Documents\\GitHub\\GestionCarnes-Firebase\\api\\functions\\node_modules\\firebase-functions\\lib\\v1\\index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-server"},"extension":{},"message":"[runtime-status] [11388] Resolved module firebase-functions {\"declared\":true,\"installed\":true,\"version\":\"4.1.0\",\"resolution\":\"C:\\\\Users\\\\Andres\\\\Documents\\\\GitHub\\\\GestionCarnes-Firebase\\\\api\\\\functions\\\\node_modules\\\\firebase-functions\\\\lib\\\\v1\\\\index.js\"}"}}
+[debug] [2022-12-12T22:25:56.212Z] [runtime-status] [11388] Checked functions.config() {"config":{}} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-server"},"extension":{},"message":"[runtime-status] [11388] Checked functions.config() {\"config\":{}}"}}
+[debug] [2022-12-12T22:25:56.213Z] [runtime-status] [11388] firebase-functions has been stubbed. {"functionsResolution":{"declared":true,"installed":true,"version":"4.1.0","resolution":"C:\\Users\\Andres\\Documents\\GitHub\\GestionCarnes-Firebase\\api\\functions\\node_modules\\firebase-functions\\lib\\v1\\index.js"}} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-server"},"extension":{},"message":"[runtime-status] [11388] firebase-functions has been stubbed. {\"functionsResolution\":{\"declared\":true,\"installed\":true,\"version\":\"4.1.0\",\"resolution\":\"C:\\\\Users\\\\Andres\\\\Documents\\\\GitHub\\\\GestionCarnes-Firebase\\\\api\\\\functions\\\\node_modules\\\\firebase-functions\\\\lib\\\\v1\\\\index.js\"}}"}}
+[debug] [2022-12-12T22:25:56.214Z] [runtime-status] [11388] Resolved module firebase-functions {"declared":true,"installed":true,"version":"4.1.0","resolution":"C:\\Users\\Andres\\Documents\\GitHub\\GestionCarnes-Firebase\\api\\functions\\node_modules\\firebase-functions\\lib\\v1\\index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-server"},"extension":{},"message":"[runtime-status] [11388] Resolved module firebase-functions {\"declared\":true,\"installed\":true,\"version\":\"4.1.0\",\"resolution\":\"C:\\\\Users\\\\Andres\\\\Documents\\\\GitHub\\\\GestionCarnes-Firebase\\\\api\\\\functions\\\\node_modules\\\\firebase-functions\\\\lib\\\\v1\\\\index.js\"}"}}
+[debug] [2022-12-12T22:25:56.215Z] [runtime-status] [11388] Resolved module firebase-admin {"declared":true,"installed":true,"version":"11.3.0","resolution":"C:\\Users\\Andres\\Documents\\GitHub\\GestionCarnes-Firebase\\api\\functions\\node_modules\\firebase-admin\\lib\\index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-server"},"extension":{},"message":"[runtime-status] [11388] Resolved module firebase-admin {\"declared\":true,\"installed\":true,\"version\":\"11.3.0\",\"resolution\":\"C:\\\\Users\\\\Andres\\\\Documents\\\\GitHub\\\\GestionCarnes-Firebase\\\\api\\\\functions\\\\node_modules\\\\firebase-admin\\\\lib\\\\index.js\"}"}}
+[debug] [2022-12-12T22:25:56.218Z] [runtime-status] [11388] Resolved module firebase-functions {"declared":true,"installed":true,"version":"4.1.0","resolution":"C:\\Users\\Andres\\Documents\\GitHub\\GestionCarnes-Firebase\\api\\functions\\node_modules\\firebase-functions\\lib\\v1\\index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-server"},"extension":{},"message":"[runtime-status] [11388] Resolved module firebase-functions {\"declared\":true,\"installed\":true,\"version\":\"4.1.0\",\"resolution\":\"C:\\\\Users\\\\Andres\\\\Documents\\\\GitHub\\\\GestionCarnes-Firebase\\\\api\\\\functions\\\\node_modules\\\\firebase-functions\\\\lib\\\\v1\\\\index.js\"}"}}
+[debug] [2022-12-12T22:25:56.218Z] [runtime-status] [11388] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"11.3.0","resolution":"C:\\Users\\Andres\\Documents\\GitHub\\GestionCarnes-Firebase\\api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-server"},"extension":{},"message":"[runtime-status] [11388] firebase-admin has been stubbed. {\"adminResolution\":{\"declared\":true,\"installed\":true,\"version\":\"11.3.0\",\"resolution\":\"C:\\\\Users\\\\Andres\\\\Documents\\\\GitHub\\\\GestionCarnes-Firebase\\\\api\\\\functions\\\\node_modules\\\\firebase-admin\\\\lib\\\\index.js\"}}"}}
+[debug] [2022-12-12T22:25:56.340Z] [runtime-status] [11388] initializeApp(DEFAULT) {"credential":{"implicit":true,"refreshToken":{"clientId":"563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com","clientSecret":"j9iVZfS8kkCEFUPaAeJV0sAi","refreshToken":"1//0h1S1xgZmGFXECgYIARAAGBESNwF-L9IrmZWbTWtySLaWAPwnhKHPwt5MyXHFeRfKR1CQioGQ9dx5vO4-hFMXk8bSMZDZiNJu9k8","type":"authorized_user"},"httpClient":{"retry":{"maxRetries":4,"statusCodes":[503],"ioErrorCodes":["ECONNRESET","ETIMEDOUT"],"backOffFactor":0.5,"maxDelayInMillis":60000}}}} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-server"},"extension":{},"message":"[runtime-status] [11388] initializeApp(DEFAULT) {\"credential\":{\"implicit\":true,\"refreshToken\":{\"clientId\":\"563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com\",\"clientSecret\":\"j9iVZfS8kkCEFUPaAeJV0sAi\",\"refreshToken\":\"1//0h1S1xgZmGFXECgYIARAAGBESNwF-L9IrmZWbTWtySLaWAPwnhKHPwt5MyXHFeRfKR1CQioGQ9dx5vO4-hFMXk8bSMZDZiNJu9k8\",\"type\":\"authorized_user\"},\"httpClient\":{\"retry\":{\"maxRetries\":4,\"statusCodes\":[503],\"ioErrorCodes\":[\"ECONNRESET\",\"ETIMEDOUT\"],\"backOffFactor\":0.5,\"maxDelayInMillis\":60000}}}}"}}
+[debug] [2022-12-12T22:25:56.540Z] [runtime-status] [11388] Functions runtime initialized. {"cwd":"C:\\Users\\Andres\\Documents\\GitHub\\GestionCarnes-Firebase\\api\\functions","node_version":"16.16.0"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-server"},"extension":{},"message":"[runtime-status] [11388] Functions runtime initialized. {\"cwd\":\"C:\\\\Users\\\\Andres\\\\Documents\\\\GitHub\\\\GestionCarnes-Firebase\\\\api\\\\functions\",\"node_version\":\"16.16.0\"}"}}
+[debug] [2022-12-12T22:25:56.540Z] [runtime-status] [11388] Listening to port: \\?\pipe\fire_emu_1fc54632152a733a {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-server"},"extension":{},"message":"[runtime-status] [11388] Listening to port: \\\\?\\pipe\\fire_emu_1fc54632152a733a"}}
+[debug] [2022-12-12T22:25:56.634Z] [worker-us-central1-server-ba69f547-59c3-4b83-b63d-19ce7940349f]: IDLE {"metadata":{"emulator":{"name":"functions"},"message":"[worker-us-central1-server-ba69f547-59c3-4b83-b63d-19ce7940349f]: IDLE"}}
+[debug] [2022-12-12T22:25:56.634Z] [worker-pool] submitRequest(triggerId=us-central1-server) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] submitRequest(triggerId=us-central1-server)"}}
+[debug] [2022-12-12T22:25:56.634Z] [worker-us-central1-server-ba69f547-59c3-4b83-b63d-19ce7940349f]: BUSY {"metadata":{"emulator":{"name":"functions"},"message":"[worker-us-central1-server-ba69f547-59c3-4b83-b63d-19ce7940349f]: BUSY"}}
+[info] i  functions: Beginning execution of "server" {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-server"},"extension":{},"message":"Beginning execution of \"server\""}}
+[warn] !  Google API requested!
+   - URL: "https://oauth2.googleapis.com/token"
+   - Be careful, this may be a production service. {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-server"},"extension":{},"message":"Google API requested!\n   - URL: \"https://oauth2.googleapis.com/token\"\n   - Be careful, this may be a production service."}}
+[info] >  validacion correcta {"user":"validacion correcta","metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-server"},"extension":{},"message":"\u001b[90m> \u001b[39m validacion correcta"}}
+[info] >  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibWFyaWFuYSIsImlhdCI6MTY3MDg4Mzk1OH0.w_gB5HIjpvrg5VJxjr2ZowaDHpwCyQ3M9xsiwVOlYUk {"user":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibWFyaWFuYSIsImlhdCI6MTY3MDg4Mzk1OH0.w_gB5HIjpvrg5VJxjr2ZowaDHpwCyQ3M9xsiwVOlYUk","metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-server"},"extension":{},"message":"\u001b[90m> \u001b[39m eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibWFyaWFuYSIsImlhdCI6MTY3MDg4Mzk1OH0.w_gB5HIjpvrg5VJxjr2ZowaDHpwCyQ3M9xsiwVOlYUk"}}
+[debug] [2022-12-12T22:25:58.098Z] [worker-us-central1-server-ba69f547-59c3-4b83-b63d-19ce7940349f]: IDLE {"metadata":{"emulator":{"name":"functions"},"message":"[worker-us-central1-server-ba69f547-59c3-4b83-b63d-19ce7940349f]: IDLE"}}
+[debug] [2022-12-12T22:25:58.098Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[info] i  functions: Finished "server" in 1448.4558ms {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-server"},"extension":{},"message":"Finished \"server\" in 1448.4558ms"}}
+[debug] [2022-12-12T22:26:31.366Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2022-12-12T22:26:31.366Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2022-12-12T22:26:31.367Z] Accepted request GET /software-de-gestion-carnes/us-central1/server/proveedores/all --> us-central1-server
+[debug] [2022-12-12T22:26:31.373Z] [functions] Runtime ready! Sending request! {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Runtime ready! Sending request!"}}
+[debug] [2022-12-12T22:26:31.373Z] [functions] Got req.url=/software-de-gestion-carnes/us-central1/server/proveedores/all, mapping to path=/proveedores/all {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Got req.url=/software-de-gestion-carnes/us-central1/server/proveedores/all, mapping to path=/proveedores/all"}}
+[debug] [2022-12-12T22:26:31.374Z] [worker-pool] submitRequest(triggerId=us-central1-server) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] submitRequest(triggerId=us-central1-server)"}}
+[debug] [2022-12-12T22:26:31.374Z] [worker-us-central1-server-ba69f547-59c3-4b83-b63d-19ce7940349f]: BUSY {"metadata":{"emulator":{"name":"functions"},"message":"[worker-us-central1-server-ba69f547-59c3-4b83-b63d-19ce7940349f]: BUSY"}}
+[info] i  functions: Beginning execution of "server" {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-server"},"extension":{},"message":"Beginning execution of \"server\""}}
+[debug] [2022-12-12T22:26:31.566Z] [worker-us-central1-server-ba69f547-59c3-4b83-b63d-19ce7940349f]: IDLE {"metadata":{"emulator":{"name":"functions"},"message":"[worker-us-central1-server-ba69f547-59c3-4b83-b63d-19ce7940349f]: IDLE"}}
+[debug] [2022-12-12T22:26:31.566Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[info] i  functions: Finished "server" in 189.0443ms {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-server"},"extension":{},"message":"Finished \"server\" in 189.0443ms"}}

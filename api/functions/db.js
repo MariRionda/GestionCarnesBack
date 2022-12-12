@@ -1,11 +1,10 @@
 require('dotenv').config();
-
-const {initializeApp, applicationDefault} = require('firebase-admin/app')
+var admin = require("firebase-admin");
 const {getFirestore} = require('firebase-admin/firestore')
 
-initializeApp({
-  credential: applicationDefault()
-})
+admin.initializeApp({
+  credential: admin.credential.applicationDefault()
+});
 
 const db = getFirestore()
 
