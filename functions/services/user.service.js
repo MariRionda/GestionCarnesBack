@@ -3,7 +3,7 @@ require("dotenv").config();
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const { db } = require('../db');
-const { token } = require("morgan");
+// const { token } = require("morgan");
 
 const authRegister = async (data) => {
 
@@ -21,7 +21,6 @@ const authRegister = async (data) => {
     // } 
 
 //crear usuario
-   
     await db.collection("Users").doc(data.name).set({name:data.name, password: pass})
 
     try {

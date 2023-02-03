@@ -2,6 +2,17 @@ const { db } = require("../db");
 
 const getAllVentasAchuras = async () => {
     try{
+        let ventas = await db.collection('VentasAchuras').where("saldo", ">", 0).get()
+        let allVentas = ventas.docs.map(a=>a.data())       
+        return allVentas;
+    }
+    catch(err){
+        return err
+    }
+};
+
+const getAllVentasAchurasConSaldo = async () => {
+    try{
         let ventas = await db.collection('VentasAchuras').get()
         let allVentas = await ventas.docs.map(a=>a.data())        
         return allVentas;
@@ -65,5 +76,6 @@ const eliminarVentaAchuras = async (venta_id) => {
         getAllVentasAchurasbyName,
         crearVentaAchuras,
         actualizarSaldoVentaAchuras,
-        eliminarVentaAchuras
+        eliminarVentaAchuras,
+        getAllVentasAchurasConSaldo
     };

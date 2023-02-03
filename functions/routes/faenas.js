@@ -3,11 +3,13 @@ const { Router } = require('express');
 const {
     getAllFaenas,
     getAllFaenasPorNTropa,
+    getFaenasUltimasVeinteDias,
     crearFaena,
     eliminarFaena,
     actualizarSaldoFaena,
     actualizarEstadoCompraFaena,
-    actualizarDetalleFaena
+    actualizarDetalleFaena,
+    getAllFaenasConSaldo
 } = require("../services/faena_stock.service");
 
 const {
@@ -20,6 +22,24 @@ const route = Router();
 route.get('/all', async (req, res) => {
     try{
     return res.send(customResponseExito(await getAllFaenas()))
+    }
+    catch{
+        return res.send("Error al traer Faenas");
+    }
+})
+
+route.get('/all/saldo', async (req, res) => {
+    try{
+    return res.send(customResponseExito(await getAllFaenasConSaldo()))
+    }
+    catch{
+        return res.send("Error al traer Faenas");
+    }
+})
+
+route.get('/all/ultimas', async (req, res) => {
+    try{
+    return res.send(customResponseExito(await getFaenasUltimasVeinteDias()))
     }
     catch{
         return res.send("Error al traer Faenas");
@@ -41,6 +61,8 @@ route.get('/:tropa', async (req, res) => {
         return res.status(400).json(customResponseError("Error, compruebe que el id que desea buscar es correcto.", 400));
     }
 })
+
+
 
 route.post('/', async (req, res) => {
     try{

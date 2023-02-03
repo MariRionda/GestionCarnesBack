@@ -2,7 +2,9 @@ const { db } = require("../db");
 
 //-->Tae todos los pagos de todas las ventas
 const getAllPagosExtras = async () => {
-    const pagos = await db.collection('PagosExtras').get()
+    let dias = 20
+    let fechaComparacion = Date.now()-dias*3600*24*1000
+    const pagos = await db.collection('PagosExtras').where("fecha",">",fechaComparacion).get()
     let allPagos = await pagos.docs.map(a=>a.data())
     return allPagos;
 };
@@ -11,6 +13,8 @@ const getAllPagosExtras = async () => {
 const crearPagoExtra = async (data) => {
     try {
         await db.collection("PagosExtras").doc(data.id).set(data)
+        let total = await (await db.collection("Caja").doc("1").get()).data().total - data.monto*1
+        await db.collection("Caja").doc("1").set({total:total, fecha:Date.now()}) 
         return true;
     } catch (e) {
         console.log(e);
@@ -19,9 +23,11 @@ const crearPagoExtra = async (data) => {
 };
 
 //-->eliminar un pago de una venta
-const eliminarPagoExtra = async (id) => {
+const eliminarPagoExtra = async (data) => {
     try {
-        await db.collection("PagosExtras").doc(id).delete()
+        await db.collection("PagosExtras").doc(data.id).delete()
+        let total = await (await db.collection("Caja").doc("1").get()).data().total + data.monto*1
+        await db.collection("Caja").doc("1").set({total:total, fecha:Date.now()}) 
         return true;
     } catch (e) {
         console.log(e);

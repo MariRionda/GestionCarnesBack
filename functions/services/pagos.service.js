@@ -3,7 +3,9 @@ const { db } = require("../db");
 //-------------PAGOS COMPRAS----------------------
 //-->Tae todos los pagos de todas las compras
 const getAllPagosCompras = async () => {
-    const pagos = await db.collection('PagosCompras').get()
+    let dias = 20
+    let fechaComparacion = Date.now()-dias*3600*24*1000
+    const pagos = await db.collection('PagosCompras').where("fecha",">",fechaComparacion).get()
     let allPagos = await pagos.docs.map(a=>a.data())
     return allPagos;
 };
@@ -22,10 +24,42 @@ const getAllPagosCompraByID_C = async (compraID) => {
     return pagos;
 };
 
+
+//--------------------------------------------------------------------------------------------------------------------------------------------
 //-->crear un nuevo pago
 const crearPagoCompra = async (data) => {
     try {
         await db.collection("PagosCompras").doc(data.id).set(data)
+        let total = await (await db.collection("Caja").doc("1").get()).data().total - data.monto*1
+        await db.collection("Caja").doc("1").set({total:total, fecha:Date.now()}) 
+        return true;
+    } catch (e) {
+        console.log(e);
+        return false;
+    }
+};
+//--------------------------------------------------------------------------------------------------------------------------------------------
+
+//-->crear un nuevo pago
+const crearPagoFaena = async (data) => {
+    try {
+        await db.collection("PagosFaenas").doc(data.id).set(data)
+        let total = await (await db.collection("Caja").doc("1").get()).data().total - data.monto*1
+        await db.collection("Caja").doc("1").set({total:total, fecha:Date.now()}) 
+        return true;
+    } catch (e) {
+        console.log(e);
+        return false;
+    }
+};
+//------------------------------------------
+
+//-->crear un nuevo pago de una venta
+const crearPagoVenta = async (data) => {
+    try {
+        await db.collection("PagosVentas").doc(data.id).set(data)
+        let total = await (await db.collection("Caja").doc("1").get()).data().total + data.monto*1
+        await db.collection("Caja").doc("1").set({total:total, fecha:Date.now()}) 
         return true;
     } catch (e) {
         console.log(e);
@@ -35,9 +69,38 @@ const crearPagoCompra = async (data) => {
 
 
 //-->eliminar un pago
-const eliminarPagoCompra = async (id) => {
+const eliminarPagoCompra = async (data) => {
     try {
-        await db.collection("PagosCompras").doc(id).delete()
+        await db.collection("PagosCompras").doc(data.id).delete()
+        let saldo = await (await db.collection("Caja").doc("1").get()).data().total + data.monto*1
+        await db.collection("Caja").doc("1").set({total:saldo, fecha:Date.now()}) 
+        return true;
+    } catch (e) {
+        console.log(e);
+        throw e;
+    }
+};
+//------------------------------------------------
+//-->eliminar un pago
+const eliminarPagoFaena = async (data) => {
+    try {
+        await db.collection("PagosFaenas").doc(data.id).delete()
+        let saldo = await (await db.collection("Caja").doc("1").get()).data().total + data.monto*1
+        await db.collection("Caja").doc("1").set({total:saldo, fecha:Date.now()}) 
+        return true;
+    } catch (e) {
+        console.log(e);
+        throw e;
+    }
+};
+
+//-->eliminar un pago de una venta
+const eliminarPagoVenta = async (data) => {
+    try {
+        await db.collection("PagosVentas").doc(data.id).delete()
+        let saldo = await (await db.collection("Caja").doc("1").get()).data().total - data.monto*1
+        await db.collection("Caja").doc("1").set({total:saldo, fecha:Date.now()}) 
+
         return true;
     } catch (e) {
         console.log(e);
@@ -48,7 +111,9 @@ const eliminarPagoCompra = async (id) => {
 //-------------------PAGOS FAENAS--------------------------
 //-->Tae todos los pagos de todas las faenas
 const getAllPagosFaenas = async () => {
-    const pagos = await db.collection('PagosFaenas').get()
+    let dias = 20
+    let fechaComparacion = Date.now()-dias*3600*24*1000
+    const pagos = await db.collection('PagosFaenas').where("fecha",">",fechaComparacion).get()
     let allPagos = await pagos.docs.map(a=>a.data())
     return allPagos;
 };
@@ -68,33 +133,14 @@ const getAllPagosFaenasByF = async (frigorifico) => {
     return pagos;
 };
 
-//-->crear un nuevo pago
-const crearPagoFaena = async (data) => {
-    try {
-        await db.collection("PagosFaenas").doc(data.id).set(data)
-        return true;
-    } catch (e) {
-        console.log(e);
-        return false;
-    }
-};
-
-//-->eliminar un pago
-const eliminarPagoFaena = async (id) => {
-    try {
-        await db.collection("PagosFaenas").doc(id).delete()
-        return true;
-    } catch (e) {
-        console.log(e);
-        throw e;
-    }
-};
 
 //-------------------PAGOS VENTAS--------------------------
 
 //-->Tae todos los pagos de todas las ventas
 const getAllPagosVentas = async () => {
-    const pagos = await db.collection('PagosVentas').get()
+    let dias = 20
+    let fechaComparacion = Date.now()-dias*3600*24*1000
+    const pagos = await db.collection('PagosVentas').where("fecha",">",fechaComparacion).get()
     let allPagos = await pagos.docs.map(a=>a.data())
     return allPagos;
 };
@@ -113,30 +159,6 @@ const getAllPagosVentaByID_V = async (ventaID) => {
     return pagos;
 };
 
-//-->crear un nuevo pago de una venta
-const crearPagoVenta = async (data) => {
-    try {
-        await db.collection("PagosVentas").doc(data.id).set(data)
-        return true;
-    } catch (e) {
-        console.log(e);
-        return false;
-    }
-};
-
-
-//-->eliminar un pago de una venta
-const eliminarPagoVenta = async (id) => {
-    try {
-        await db.collection("PagosVentas").doc(id).delete()
-        return true;
-    } catch (e) {
-        console.log(e);
-        throw e;
-    }
-};
-
-
 module.exports = {
     getAllPagosCompras,
     getAllPagosCompraByP,
@@ -154,6 +176,3 @@ module.exports = {
     crearPagoVenta,
     eliminarPagoVenta
 }
-
-
-

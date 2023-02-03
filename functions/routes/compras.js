@@ -6,7 +6,8 @@ const {
     getComprasPorProveedor,
     crearCompra,
     eliminarCompra,
-    actualizarSaldoCompra
+    actualizarSaldoCompra,
+    getAllComprasConSaldo
 } = require("../services/compra_venta.service.js");
 
 const {
@@ -19,6 +20,11 @@ const route = Router();
 route.get('/all', async (req, res) => {
     return res.send(customResponseExito(await getAllCompras()))
 })
+
+route.get('/all/saldo', async (req, res) => {
+    return res.send(customResponseExito(await getAllComprasConSaldo()))
+})
+
 
 route.get('/:id', async (req, res) => {
     const { id } = req.params;

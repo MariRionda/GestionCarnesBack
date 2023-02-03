@@ -1,7 +1,15 @@
 const { db } = require('../db');
 
 const getAllFaenas = async () => {
-    const faenas = await db.collection('Faenas').get()
+    let dias = 80 //volver a cambiar a 30!!!!
+    let fechaComparacion = Date.now()-dias*3600*24*1000
+    const faenas = await db.collection('Faenas').where("fecha",">",fechaComparacion).get()
+    let allFaenas = await faenas.docs.map(a=>a.data())
+    return allFaenas;
+};
+
+const getAllFaenasConSaldo = async () => {
+    const faenas = await db.collection('Faenas').where("saldo", ">", 0).get()
     let allFaenas = await faenas.docs.map(a=>a.data())
     return allFaenas;
 };
@@ -10,6 +18,13 @@ const getAllFaenasPorNTropa = async (nTropa) => {
     let datos = await db.collection('Faenas').where("tropa", "==", nTropa).get()
     let faena = datos.docs[0].data()
     return faena;
+};
+
+const getFaenasUltimasVeinteDias = async () => {
+    let fechaComparacion = Date.now()-(3600*1000*24*20)
+    const faenas = await db.collection('Faenas').where("fecha", ">", fechaComparacion).get()
+    let allFaenas = await faenas.docs.map(a=>a.data())
+    return allFaenas;
 };
 
 const crearFaena = async (data) => {
@@ -72,5 +87,7 @@ module.exports = {
     eliminarFaena,
     actualizarSaldoFaena,
     actualizarEstadoCompraFaena,
-    actualizarDetalleFaena
+    actualizarDetalleFaena,
+    getFaenasUltimasVeinteDias,
+    getAllFaenasConSaldo
 }

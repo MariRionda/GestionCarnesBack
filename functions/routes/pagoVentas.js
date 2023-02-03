@@ -61,10 +61,9 @@ route.post('/', async (req, res) => {
 
 //--> eliminar el pago de una venta
 route.delete('/', async (req, res) => {
-    const { pv_id } = req.body
 
     try {
-        if(await eliminarPagoVenta(pv_id)){
+        if(await eliminarPagoVenta(req.body)){
             return res.status(200).send(customResponseExito("Pago eliminado con éxito"));
         }
     } catch (error) {

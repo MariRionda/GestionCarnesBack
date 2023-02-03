@@ -5,7 +5,9 @@ const { db } = require("../db");
 
 const getAllVentas = async () => {
     try {
-        let ventas = await db.collection('Ventas').get()
+        let dias = 30
+        let fechaComparacion = Date.now()-dias*3600*24*1000
+        let ventas = await db.collection('Ventas').where("fecha",">",fechaComparacion).get()
         let allVentas = await ventas.docs.map(a=>a.data())        
         return allVentas;
     }
@@ -15,18 +17,25 @@ const getAllVentas = async () => {
     }
 }
 
+const getAllVentasConSaldo = async () => {
+    try {
+        let ventas = await db.collection('Ventas').where("saldo",">",0).get()
+        let allVentas = await ventas.docs.map(a=>a.data())        
+        return allVentas;
+    }
+    catch (e) {
+        console.log(e);
+        return false;
+    }
+}
+
+
 const getAllVentasUltimos30Dias = async () => {
     try {
-        let ventas = await db.collection('Ventas').get()
+        const fechaDeComp30Dias = Date.now()-(30*24*3600*1000)
+        let ventas = await db.collection('Ventas').where("fecha",">",fechaDeComp30Dias).get()
         let allVentas = await ventas.docs.map(a=>a.data()) 
-        const fecha = Date.now()-(30*24*3600*1000)
-        let ventasUltimos30Dias=[]
-        if(allVentas.length>0){
-            allVentas.map(e=>{
-                if(e.fecha>fecha)ventasUltimos30Dias.push(e)
-            })
-        }
-            return ventasUltimos30Dias;
+        return allVentas;
     }
     catch (e) {
         console.log(e);
@@ -98,7 +107,9 @@ const actualizarSaldoCompra = async (id, saldo) => {
 
 const getAllCompras = async () => {
     try {
-        let compras = await db.collection('Compras').get()
+        let dias = 30
+        let fechaComparacion = Date.now()-dias*3600*24*1000
+        let compras = await db.collection('Compras').where("fecha",">",fechaComparacion).get()
         let allCompras = await compras.docs.map(a=>a.data())        
         return allCompras;
     }
@@ -107,6 +118,18 @@ const getAllCompras = async () => {
         return false;
     }
 };
+
+const getAllComprasConSaldo = async () => {
+    try {
+        let compras = await db.collection('Compras').where("saldo",">",0).get()
+        let allCompras = await compras.docs.map(a=>a.data())        
+        return allCompras;
+    }
+    catch (e) {
+        console.log(e);
+        return false;
+    }
+}
 
 const getCompra = async (id) => {
     let compra = await db.collection('Compras').doc(id).get()
@@ -141,6 +164,7 @@ const eliminarCompra = async (compra_id) => {
 
 
 module.exports = {
+    getAllVentasConSaldo,
     getCompra,
     getAllCompras,
     getComprasPorProveedor,
@@ -154,5 +178,6 @@ module.exports = {
     actualizarSaldoVenta,
     actualizarSaldoCompra,
     getAllVentasUltimos30Dias,
-    getAllVentasbyName
+    getAllVentasbyName,
+    getAllComprasConSaldo
 };

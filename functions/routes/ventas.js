@@ -13,7 +13,8 @@ const {
     actualizarSaldoVenta,
     eliminarVenta,
     getAllVentasUltimos30Dias,
-    getAllVentasbyName
+    getAllVentasbyName,
+    getAllVentasConSaldo
 } = require("../services/compra_venta.service.js")
 
 const route = Router();
@@ -27,6 +28,17 @@ route.get('/all', async (req, res) => {
         return res.status(400).send(customResponseError("Error, compruebe que el id que desea buscar es correcto.", 400));
     }
 })
+
+route.get('/all/saldo', async (req, res) => {
+    try {
+
+    return res.send(customResponseExito(await getAllVentasConSaldo()))
+    }
+    catch{
+        return res.status(400).send(customResponseError("Error, compruebe que el id que desea buscar es correcto.", 400));
+    }
+})
+
 
 route.get('/:id', async (req, res) => {
     const { id } = req.params;

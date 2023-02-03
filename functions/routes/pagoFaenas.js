@@ -61,11 +61,10 @@ route.post('/', async (req, res) => {
 })
 
 //--> eliminar el pago de una faena
-route.delete('/', async (req, res) => {
-    const { pf_id } = req.body
+route.delete('/', async (req, res) => { 
 
     try {
-        if(await eliminarPagoFaena(pf_id)){
+        if(await eliminarPagoFaena(req.body)){
             return res.status(200).send(customResponseExito("Pago eliminado con éxito"));
         }
     } catch (error) {

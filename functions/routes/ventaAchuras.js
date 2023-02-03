@@ -12,13 +12,18 @@ const {
     getAllVentasAchurasbyName,
     crearVentaAchuras,
     actualizarSaldoVentaAchuras,
-    eliminarVentaAchuras
+    eliminarVentaAchuras,
+    getAllVentasAchurasConSaldo
 } = require("../services/venta_achuras.service.js")
 
 const route = Router();
 
 route.get('/all', async (req, res) => {
     return res.send(customResponseExito(await getAllVentasAchuras()))
+})
+
+route.get('/all/saldo', async (req, res) => {
+    return res.send(customResponseExito(await getAllVentasAchurasConSaldo()))
 })
 
 route.get('/:id', async (req, res) => {
